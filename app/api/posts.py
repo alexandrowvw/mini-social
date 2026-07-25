@@ -21,4 +21,4 @@ async def create_post(
     post: PostCreate,
     service: PostService = Depends(get_post_service)
 ):
-    return service.create_post(post)
+    return await service.create_post(post)

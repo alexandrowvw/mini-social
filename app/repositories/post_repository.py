@@ -1,20 +1,28 @@
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.models.post import Post
 
-# создает пост -> storage
+# создает пост -> postgresql
 class PostRepository:
-    def __init__(self, session):
+    def __init__(self, session: AsyncSession):
         self.session = session 
         
-    def create(self, text: str) -> Post:
+    async def create(self, text: str) -> Post:
         post = Post(
-            self._next_id,
-            text
+            text=text
         )
 
-        self._posts.append(post)
-        self._next_id += 1
+        self.session.add(post)
+
+        await self.session.commit()
+        await self.session.refresh(post)
 
         return post
 
-    def get_all_posts(self) -> list[Post]:
-        return self._posts.copy()
+    async def get_all_posts(self) -> list[Post]:
+        pass
+        # result = await self.session.execute(
+        #     select(Post)
+        # )
+
+        # return result.scalars().all()

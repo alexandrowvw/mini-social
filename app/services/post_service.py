@@ -5,8 +5,8 @@ class PostService():
     def __init__(self, repository):
         self.repository = repository
 
-    def create_post(self, post: PostCreate):
-        return self.repository.create(post.text)
+    async def create_post(self, post: PostCreate):
+        return await self.repository.create(post.text)
 
-    def get_posts(self):
+    async def get_posts(self):
         return self.repository.get_all_posts()
