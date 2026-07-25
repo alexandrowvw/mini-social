@@ -2,9 +2,8 @@ from app.models.post import Post
 
 # создает пост -> storage
 class PostRepository:
-    def __init__(self):
-        self._posts = []
-        self._next_id = 1
+    def __init__(self, session):
+        self.session = session 
         
     def create(self, text: str) -> Post:
         post = Post(
