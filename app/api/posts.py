@@ -14,7 +14,7 @@ router = APIRouter(
 async def get_posts(
     service: PostService = Depends(get_post_service)
 ):
-    return service.get_posts()
+    return await service.get_posts()
 
 @router.post("/", response_model=PostResponse)
 async def create_post(

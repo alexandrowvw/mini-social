@@ -16,6 +16,8 @@ session_maker = async_sessionmaker(
     expire_on_commit=False # после commit не стирает данные объекта из памяти, оставив его актуальным
 )
 
+print(settings.DATABASE_URL)
+
 async def get_session():
     async with session_maker() as session:
         yield session

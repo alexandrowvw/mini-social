@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
 from app.models.post import Post
 
@@ -20,9 +21,9 @@ class PostRepository:
         return post
 
     async def get_all_posts(self) -> list[Post]:
-        pass
-        # result = await self.session.execute(
-        #     select(Post)
-        # )
+        result = await self.session.execute(
+            select(Post)
+        )
 
-        # return result.scalars().all()
+        return result.scalars().all()
+

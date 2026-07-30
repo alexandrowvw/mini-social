@@ -9,4 +9,4 @@ class PostService():
         return await self.repository.create(post.text)
 
     async def get_posts(self):
-        return self.repository.get_all_posts()
+        return await self.repository.get_all_posts()
