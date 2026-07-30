@@ -8,11 +8,7 @@ class PostRepository:
     def __init__(self, session: AsyncSession):
         self.session = session 
         
-    async def create(self, text: str) -> Post:
-        post = Post(
-            text=text
-        )
-
+    async def create(self, post: Post) -> Post:
         self.session.add(post)
 
         await self.session.commit()
